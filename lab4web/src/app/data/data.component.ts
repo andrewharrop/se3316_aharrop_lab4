@@ -1,4 +1,6 @@
-import { Component, Injectable, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
+import { catchError, map, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-data',
@@ -6,14 +8,20 @@ import { Component, Injectable, OnInit } from '@angular/core';
   styleUrls: ['./data.component.css']
 })
 
-@Injectable()
 export class DataComponent implements OnInit {
-
-  constructor() { }
-    
+  serverVal;
+  constructor(private http: HttpClient) { }
   
-
-  ngOnInit(): void {
+  
+  getServer(){
+    return this.http.get<any>('http://localhost:3000/data')
   }
-
+  ngOnInit() {
+    
+    this.getServer().subscribe(data => {
+        this.serverVal =  JSON.stringify(data["data"]);
+    })
+    
+  }
+  
 }
