@@ -1,7 +1,8 @@
 <p class="search_box_header_search_course_codes">Please Enter Course Code</p>
 <div class="search_line_search_course_codes">
     <form method="GET" action="/api/searchcoursecodes">
-        <input class="search_box_search_course_codes" name="sscInput" type="text">
-        <button class="search_button_search_course_codes" formmethod="POST">Search</button>
+        <input class="search_box_search_course_codes" name="sscInput" (input)="onUpdateValue($event)" [(ngModel)]="stcText" type="text">
+        <button class="search_button_search_course_codes" (click)="submit()" formmethod="POST">Search</button>
     </form>
 </div>
+<div [innerHTML]="serverVal"></div>

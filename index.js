@@ -87,6 +87,13 @@ app.post('/deleteschedules', (request, response) => {
     }
     response.end()
 });
+
+app.post('/searchcoursecodes', (request, response) => {
+    let input = santitze.sanitize(request.body.value)   //input
+    results = backManager.courseCodes(input)
+    response.json({"data":(frontManager.putArrayInTable(results))}); //add search box
+    response.end()
+});
 app.listen(port);
 
 console.log("Listening on port " + port)
