@@ -94,6 +94,46 @@ app.post('/searchcoursecodes', (request, response) => {
     response.json({"data":(frontManager.putArrayInTable(results))}); //add search box
     response.end()
 });
+
+app.post('/searchforentry', (request, response)=>{
+    let sc = santitze.sanitize(request.body.value1);   //input
+    let cc1 = santitze.sanitize(request.body.value2);//input
+    let cc2 = santitze.sanitize(request.body.value3);  //input
+    let v = backManager.timetableEntry(sc, cc1, cc2)[0];
+    if (v) {
+        response.json({"data":frontManager.putInTable(v)});
+    } else {
+        response.json({"data": '<h1 id="search_box_header">No entry found</h1>'})
+    }
+    response.end()
+
+});
+app.post('/searchforschedule', (request, response) => {
+
+
+    let scname = santitze.sanitize(request.body.value); //input
+
+    let result2 = backManager.getScheduleEntry(scname);
+    let result3 = backManager.getLongSchedule(scname);
+    if (result2 && result3) {
+        let r = '';
+        for (let u = 0; u < result3.length; u++) {
+            r += frontManager.putInTable(result3[u])
+
+        }
+        v = frontManager.scheduleEnumInd(result2) + r
+        response.json({"data": v}); //add search boc
+    } else {
+        response.json({"data": `<h2 id="search_box_header">Schedule not found under name "${scname}"</h2>`}); //center this
+    }
+    response.end()
+});
+
+app.get('/schedules', (request, response) => {
+    response.json({"data":(frontManager.scheduleEnum(backManager.getSchedule()))});
+    response.end()
+});
+
 app.listen(port);
 
 console.log("Listening on port " + port)
