@@ -25,7 +25,7 @@ module.exports = {
     },
     getWeeklyTable: function (weeklyTable) {
         if (weeklyTable) {
-            let t1 = '<table id="results_table_spec">';
+            let t1 = '<table class="results_table_spec">';
             t1 += '<tr><td>Monday</td><td>Tuesday</td><td>Wednesday</td><td>Thursday</td><td>Friday</td></tr>';
             let wednesday = weeklyTable["wednesday"];
             let thursday = weeklyTable["thursday"];
@@ -60,7 +60,7 @@ module.exports = {
             t1 += '</table>';
             return t1;
         }
-        return '<p id="status_var">Cannot generate schedule for entry: error bad schedule input<p>';
+        return '<p class="status_var">Cannot generate schedule for entry: error bad schedule input<p>';
     },
     putArrayInTable: function (arr) {
         let fs = '<table id="results_table_arr">';

@@ -3,6 +3,8 @@ const bodyParser = require('body-parser');
 const app = express()
 const backManager = require('./backend/server-js/back-manager');
 const frontManager = require('./backend/server-js/front-manager');
+const santitze = require('./backend/server-js/sanitizor');
+const { sanitize } = require('./backend/server-js/sanitizor');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}) );
 app.all("/*", function(req, res, next){
@@ -12,6 +14,7 @@ app.all("/*", function(req, res, next){
     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
     next();
   });
+const port = 3000;
 
 
 app.get('/data', (req, res)=>{
@@ -31,16 +34,59 @@ app.get('/scddata', (req, res) =>{
 });
 
 app.post('/whatdoihavethisweek', (request, response) => {
-    name = request.body  
-    console.log(name)
 
-    //let name = sanitize.sanitize(request.body.schedule);   
-    //let holder = frontManager.getWeeklyTable(backManager.getLongSchedules(name))
+    let name = santitze.sanitize(request.body.value);   
+    let holder = frontManager.getWeeklyTable(backManager.getLongSchedules(name))
     
-    //response.json({"data":frontManager.genericForm(frontManager.timeTableGeneratorSearch() +  holder)});
-    response.json({"data":"fdsafdsafdsa"})
+    response.json({"data":(holder)});
+    //response.send('fdsa')
     response.end()
 })
-app.listen(3000);
 
-console.log("Listening on port 3000")
+app.post('/createschedule', (request, response)=>{
+    let name = santitze.sanitize(request.body.value)   //input
+    let worked = backManager.createSchedule(name)
+    if (worked) {
+        response.json({"data": '<h1 id="search_box_header">Success<h1>'}); 
+    } else {
+        response.json({"data": '<h1 id="search_box_header">Error, Schedule already exists or bad input</h1>'});
+    }
+    response.end();
+})
+
+app.post('/addtoschedule', (request, response) =>{
+    
+    let worked = backManager.saveSchedule(santitze.sanitize(request.body.value1), santitze.sanitize(request.body.value2), santitze.sanitize(request.body.value3));   //input
+    console.log("here")
+    if (worked) {
+        response.json({"data":'<h1 id="search_box_header">Success</h1>'});
+    } else {
+        response.json({"data":'<h1 id="search_box_header">Could not save to schedule.  Courses do not exist or bad input.</h1>'});
+
+    }
+
+    response.end()
+});
+app.post('/deleteschedule', (request, response) => {
+
+    let worked = backManager.deleteSchedule(santitze.sanitize(request.body.value));    //input
+    if (worked) {
+        response.json({"data":'<h1 id="search_box_header">Succcess</h1>'});
+    } else {
+        response.json({"data":'<h1 id="search_box_header">No schedules to delete under that input</h1>'});
+    }
+
+    response.end()
+});
+app.post('/deleteschedules', (request, response) => {
+    let worked = backManager.resetSchedules();
+    if (worked) {
+        response.json({"data":'<h1 id="search_box_header">Succcess</h1>'});
+    } else {
+        response.json({"data":'<h1 id="search_box_header">No schedules to delete</h1>'});
+    }
+    response.end()
+});
+app.listen(port);
+
+console.log("Listening on port " + port)

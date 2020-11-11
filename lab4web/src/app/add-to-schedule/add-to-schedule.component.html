@@ -1,14 +1,15 @@
 <p class="search_box_header">Please Enter Schedule Name add to:</p>
     <div class="search_line1">
-        <form method="POST" action="/api/addtoschedule">
-            <input class="search_box1" name="sname" type="text" required>
+        <form method="POST" action="/addtoschedule">
+            <input class="search_box1" name="sname" type="text" (input)="onUpdateValue1($event)" [(ngModel)]="stcText1" required>
             <p> </p>
             Subject code:
-            <input class="search_box1" name="subcode" type="text" required>
+            <input class="search_box1" name="subcode" type="text" (input)="onUpdateValue2($event)" [(ngModel)]="stcText2" required>
             <p> </p>
             Course code:
-            <input class="search_box1" name="coursecode" type="text" required>
+            <input class="search_box1" name="coursecode" type="text" (input)="onUpdateValue3($event)" [(ngModel)]="stcText3" required>
             <p></p>
-            <button class="search_button1" formmethod="POST">Update</button>
+            <button class="search_button1" (click)="submit()" formmethod="POST">Update</button>
         </form>
     </div>
+    <div [innerHTML]="serverVal"></div>
