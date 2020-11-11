@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
-import { catchError, map, tap } from 'rxjs/operators';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Component({
   selector: 'app-data',
@@ -19,7 +18,7 @@ export class DataComponent implements OnInit {
   ngOnInit() {
     
     this.getServer().subscribe(data => {
-        this.serverVal =  JSON.stringify(data["data"]);
+        this.serverVal =  (data["data"]);
     })
     
   }

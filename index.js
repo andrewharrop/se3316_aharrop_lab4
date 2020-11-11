@@ -25,7 +25,22 @@ app.get('/data', (req, res)=>{
     res.json({"data": s})
     res.end()
 });
+app.get('/scddata', (req, res) =>{
+    res.json({"data":frontManager.scdManage(backManager.scdData())})
+    res.end()
+});
 
+app.post('/whatdoihavethisweek', (request, response) => {
+    name = request.body  
+    console.log(name)
+
+    //let name = sanitize.sanitize(request.body.schedule);   
+    //let holder = frontManager.getWeeklyTable(backManager.getLongSchedules(name))
+    
+    //response.json({"data":frontManager.genericForm(frontManager.timeTableGeneratorSearch() +  holder)});
+    response.json({"data":"fdsafdsafdsa"})
+    response.end()
+})
 app.listen(3000);
 
 console.log("Listening on port 3000")
