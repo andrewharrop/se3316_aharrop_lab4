@@ -3,8 +3,7 @@ const bodyParser = require('body-parser');
 const app = express()
 const backManager = require('./backend/server-js/back-manager');
 const frontManager = require('./backend/server-js/front-manager');
-const santitze = require('./backend/server-js/sanitizor');
-const { sanitize } = require('./backend/server-js/sanitizor');
+const sanitize = require('./backend/server-js/sanitizor');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}) );
 app.all("/*", function(req, res, next){
@@ -35,7 +34,7 @@ app.get('/scddata', (req, res) =>{
 
 app.post('/whatdoihavethisweek', (request, response) => {
 
-    let name = santitze.sanitize(request.body.value);   
+    let name = sanitize.sanitize(request.body.value);   
     let holder = frontManager.getWeeklyTable(backManager.getLongSchedules(name))
     
     response.json({"data":(holder)});
@@ -44,7 +43,7 @@ app.post('/whatdoihavethisweek', (request, response) => {
 })
 
 app.post('/createschedule', (request, response)=>{
-    let name = santitze.sanitize(request.body.value)   //input
+    let name = sanitize.sanitize(request.body.value)   //input
     let worked = backManager.createSchedule(name)
     if (worked) {
         response.json({"data": '<h1 id="search_box_header">Success<h1>'}); 
@@ -56,7 +55,7 @@ app.post('/createschedule', (request, response)=>{
 
 app.post('/addtoschedule', (request, response) =>{
     
-    let worked = backManager.saveSchedule(santitze.sanitize(request.body.value1), santitze.sanitize(request.body.value2), santitze.sanitize(request.body.value3));   //input
+    let worked = backManager.saveSchedule(sanitize.sanitize(request.body.value1), sanitize.sanitize(request.body.value2), sanitize.sanitize(request.body.value3));   //input
     console.log("here")
     if (worked) {
         response.json({"data":'<h1 id="search_box_header">Success</h1>'});
@@ -69,7 +68,7 @@ app.post('/addtoschedule', (request, response) =>{
 });
 app.post('/deleteschedule', (request, response) => {
 
-    let worked = backManager.deleteSchedule(santitze.sanitize(request.body.value));    //input
+    let worked = backManager.deleteSchedule(sanitize.sanitize(request.body.value));    //input
     if (worked) {
         response.json({"data":'<h1 id="search_box_header">Succcess</h1>'});
     } else {
@@ -89,16 +88,16 @@ app.post('/deleteschedules', (request, response) => {
 });
 
 app.post('/searchcoursecodes', (request, response) => {
-    let input = santitze.sanitize(request.body.value)   //input
+    let input = sanitize.sanitize(request.body.value)   //input
     results = backManager.courseCodes(input)
     response.json({"data":(frontManager.putArrayInTable(results))}); //add search box
     response.end()
 });
 
 app.post('/searchforentry', (request, response)=>{
-    let sc = santitze.sanitize(request.body.value1);   //input
-    let cc1 = santitze.sanitize(request.body.value2);//input
-    let cc2 = santitze.sanitize(request.body.value3);  //input
+    let sc = sanitize.sanitize(request.body.value1);   //input
+    let cc1 = sanitize.sanitize(request.body.value2);//input
+    let cc2 = sanitize.sanitize(request.body.value3);  //input
     let v = backManager.timetableEntry(sc, cc1, cc2)[0];
     if (v) {
         response.json({"data":frontManager.putInTable(v)});
@@ -111,7 +110,7 @@ app.post('/searchforentry', (request, response)=>{
 app.post('/searchforschedule', (request, response) => {
 
 
-    let scname = santitze.sanitize(request.body.value); //input
+    let scname = sanitize.sanitize(request.body.value); //input
 
     let result2 = backManager.getScheduleEntry(scname);
     let result3 = backManager.getLongSchedule(scname);

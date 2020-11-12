@@ -8,6 +8,7 @@ import {NavbarComponent} from './navbar/navbar.component'
 })
 export class AppComponent implements OnInit {
   value:string;
+  url="me";
   ngOnInit(){
     this.value="";
   }
