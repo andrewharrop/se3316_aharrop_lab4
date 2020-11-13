@@ -1,7 +1,8 @@
 <p class="search_box_header">Please Enter Schedule Name to delete</p>
 <div class="search_line1">
     <form method="GET" action="/api/deleteschedule">
-        <input class="search_box1" name="sname" type="text" (input)="onUpdateValue($event)" [(ngModel)]="stcText" required>
+        <input class="search_box1" name="sname" type="text" (input)="onUpdateValue($event)" [(ngModel)]="stcText"
+            required>
         <p> </p>
         Are you sure you want to delete this entry?
         <input type="checkbox" class="confirmation" name="confirmation" required>

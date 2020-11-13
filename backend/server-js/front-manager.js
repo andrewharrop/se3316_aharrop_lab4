@@ -151,12 +151,12 @@ module.exports = {
         fs += '<tr id="table_row_spec"><td id="table_data_spec">' + data.name + '</td><td id="table_data_spec"> ' + data['subject codes'] + '</td><td id="table_data_spec"> ' + data['course codes'] + '</td></tr>';
         return fs;
     },
-    putInDom: function(htmlData){
+    putInDom: function (htmlData) {
         var parent = document.getElementById("tNode");
         var child = document.createTextNode(htmlData);
         parent.appendChild(child);
     },
-    genericForm:function(data){
+    genericForm: function (data) {
         let s = `<!DOCTYPE html>
         <html>
         
@@ -212,9 +212,9 @@ module.exports = {
         ` + data + `</body>
 
         </html>`;
-    return s;
+        return s;
     },
-    timeTableGeneratorSearch:function(){
+    timeTableGeneratorSearch: function () {
         return `<p id="search_box_header">Please Enter Schedule Name</p>
         <div id="search_line1">
             <form method="GET" action="/api/whatdoihavethisweek">
@@ -223,7 +223,7 @@ module.exports = {
             </form>
         </div>`;
     },
-    searchCourseCodesSearch:function(){
+    searchCourseCodesSearch: function () {
         return `<p id="search_box_header">Please Enter Course Code</p>
         <div id="search_line1">
             <form method="GET" action="/api/searchcoursecodes">
@@ -232,7 +232,7 @@ module.exports = {
             </form>
         </div>`;
     },
-    searchForEntrySearch:function(){
+    searchForEntrySearch: function () {
         return `<p id="search_box_header">Please Enter Query</p>
         <div id="search_line1">
             <form method="GET">
@@ -253,7 +253,7 @@ module.exports = {
             
         </div>`
     },
-    searchForSchedulesSearch:function(){
+    searchForSchedulesSearch: function () {
         return ` <p id="search_box_header">Please Enter Schedule Name</p>
         <div id="search_line1">
             <form method="GET" action="/api/searchforschedule">
@@ -262,7 +262,7 @@ module.exports = {
             </form>
         </div>`
     },
-    createScheduleInput:function(){
+    createScheduleInput: function () {
         return `<p id="search_box_header">Please Enter Schedule Name</p>
         <div id="search_line1">
             <form method="GET" action="/api/createschedule">
@@ -271,7 +271,7 @@ module.exports = {
             </form>
         </div>`
     },
-    addtoscheduleInput:function(){
+    addtoscheduleInput: function () {
         return `<div id="search_line1">
         <form method="POST" action="/api/addtoschedule">
             <input id="search_box1" name="sname" type="text" required>
@@ -286,7 +286,7 @@ module.exports = {
         </form>
     </div>`
     },
-    deleteScheduleInput:function(){
+    deleteScheduleInput: function () {
         return `<p id="search_box_header">Please Enter Schedule Name to delete</p>
         <div id="search_line1">
             <form method="GET" action="/api/deleteschedule">
@@ -299,7 +299,7 @@ module.exports = {
             </form>
         </div>`
     },
-    deleteSchedulesInput:function(){
+    deleteSchedulesInput: function () {
         return `<div id="search_line1">
         <form method="GET" action="/api/deleteschedules">
 
