@@ -21,7 +21,7 @@ app.get('/data', (req, res)=>{
     let x = backManager.getTimetableData()
     let s = ''
     for (let i = 0; i < x.length; i++) {
-        s += frontManager.putInTable(x[i]) 
+        s += frontManager.putInTableModData(x[i]) 
         
     }
     res.json({"data": s})

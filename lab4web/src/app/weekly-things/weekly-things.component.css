@@ -40,3 +40,10 @@
     margin-top: 50px;
     text-shadow: 18px 18px 13px #111111c5;
   }
+
+  div{
+    padding-top: 50px;
+    width:60%;
+    margin: auto;
+}
+

@@ -34,3 +34,10 @@
     outline: none;
     background-color:whitesmoke;
   }
+  div{
+    width:60%;
+    margin: auto; 
+    padding-top: 30px;
+    text-align: center;
+  }
+  

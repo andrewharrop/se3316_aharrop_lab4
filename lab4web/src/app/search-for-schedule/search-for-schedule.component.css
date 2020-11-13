@@ -41,3 +41,10 @@
   .space{
       margin-top: 20px;
   }
+  div{
+    width:60%;
+    margin: auto; 
+    padding-top: 30px;
+    align-content: center;
+  }
+  

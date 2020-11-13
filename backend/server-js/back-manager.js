@@ -64,9 +64,7 @@ module.exports = {
     deleteSchedule: function (scheduleName) {
         let initial = schedules.length;
         name = scheduleName;
-        if (scheduleName) {
-            scheduleName = scheduleName[0];
-        };
+        
         if (schedules.length > 0) {
             for (let i = 0; i < schedules.length; i++) {
                 if (schedules[i]['name'] == scheduleName) {

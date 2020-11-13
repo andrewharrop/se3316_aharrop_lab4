@@ -38,3 +38,10 @@
     margin-top: 30px;
     overflow-wrap: break-word;
   }
+  div{
+    width:60%;
+    margin: auto; 
+    padding-top: 30px;
+    text-align: center;
+  }
+  

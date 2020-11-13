@@ -23,6 +23,20 @@ module.exports = {
         fs += '</table>';
         return fs;
     },
+    putInTableModData: function (values) {
+        let fs = '<table id="results_table" style="margin-top:10px;"><tr id="table_row"><td id="table_data">Key</td><td id="table_data">Value</td></tr>';
+        for (let key in values) {
+            if (typeof (values[key]) != "object") {
+                fs += '<tr id="table_row"><td id="table_data">' + key + '</td><td id="table_data"> ' + values[key] + '</td></tr>';
+            } else {
+                for (let innerKey in values[key][0]) {
+                    fs += '<tr id="table_row"><td id="table_data">' + innerKey + '</td><td id="table_data"> ' + values[key][0][innerKey] + '</td></tr>';
+                };
+            };
+        };
+        fs += '</table>';
+        return fs;
+    },
     getWeeklyTable: function (weeklyTable) {
         if (weeklyTable) {
             let t1 = '<table class="results_table_spec">';
