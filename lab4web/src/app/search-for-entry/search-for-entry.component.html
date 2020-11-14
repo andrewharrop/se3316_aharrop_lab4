@@ -3,11 +3,13 @@
     <form method="GET">
         <div class='nowarpline'>
             Subject code:
-            <input name="sc" class="search_box1" (input)="onUpdateValue1($event)" [(ngModel)]="stcText1" type="text" required>
+            <input name="sc" class="search_box1" (input)="onUpdateValue1($event)" [(ngModel)]="stcText1" type="text"
+                required>
         </div>
         <div class='nowarpline'>
             Course code:
-            <input name="cc1" class="search_box1" (input)="onUpdateValue2($event)" [(ngModel)]="stcText2" type="text" required>
+            <input name="cc1" class="search_box1" (input)="onUpdateValue2($event)" [(ngModel)]="stcText2" type="text"
+                required>
         </div>
         <div id='nowarpline'>
             Course Component (Optional):
@@ -17,6 +19,6 @@
             <div class="space"></div>
             <button class="search_button1" (click)="submit()" formmethod="POST">Search</button>
         </div>
-    </form>   
+    </form>
 </div>
 <div [innerHTML]="serverVal"></div>

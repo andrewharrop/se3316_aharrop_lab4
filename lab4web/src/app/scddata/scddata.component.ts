@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { url } from '../server';
 
 @Component({
   selector: 'app-scddata',
@@ -9,17 +10,16 @@ import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 export class ScddataComponent implements OnInit {
   serverVal;
   constructor(private http: HttpClient) { }
-  
-  
-  getServer(){
-    return this.http.get<any>('http://localhost:3000/scddata')
+
+  getServer() {
+    return this.http.get<any>(url.url + '/scddata')
   }
   ngOnInit() {
-    
+
     this.getServer().subscribe(data => {
-        this.serverVal =  (data["data"]);
+      this.serverVal = (data["data"]);
     })
-    
+
   }
 
 }

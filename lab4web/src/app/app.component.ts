@@ -1,29 +1,19 @@
-import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {NavbarComponent} from './navbar/navbar.component'
+import { Component, OnInit } from "@angular/core";
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: "app-root",
+  templateUrl: "./app.component.html",
 })
 export class AppComponent implements OnInit {
-  value:string;
-  url="me";
-  ngOnInit(){
-    this.value="";
+  value: string;
+  ngOnInit() {
+    this.value = "";
   }
 
-  setValue(val:string){
-    alert(this.value)
+  setValue(val: string) {
+    alert(this.value);
 
     this.value = val;
   }
-  
 
-  componentSwitches:string[]=[
-    'home',
-    
-    'search course codes'
-  ];
-
+  componentSwitches: string[] = ["home", "search course codes"];
 }

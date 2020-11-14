@@ -1,8 +1,9 @@
 <p class="search_box_header">Please Enter Schedule Name</p>
 <div class="search_line1">
     <form method="GET" action="/createschedule">
-        <input class="search_box1" name="cname" type="text" (input)="onUpdateValue($event)" [(ngModel)]="stcText" required>
-        <button class="search_button1" (click)="submit()" formmethod="POST" >Create</button>
+        <input class="search_box1" name="cname" type="text" (input)="onUpdateValue($event)" [(ngModel)]="stcText"
+            required>
+        <button class="search_button1" (click)="submit()" formmethod="POST">Create</button>
     </form>
 </div>
 <div [innerHTML]="serverVal"></div>

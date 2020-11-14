@@ -1,7 +1,8 @@
 <p class="search_box_header">Please Enter Schedule Name</p>
 <div class="search_line1">
     <form method="GET" action="/whatdoihavethisweek">
-        <input class="search_box1" name="schedule" type="text" (input)="onUpdateValue($event)" [(ngModel)]="stcText" required>
+        <input class="search_box1" name="schedule" type="text" (input)="onUpdateValue($event)" [(ngModel)]="stcText"
+            required>
         <button (click)="submit()" class="search_button1" formmethod="POST">Search</button>
     </form>
 </div>
